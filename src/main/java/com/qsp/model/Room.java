@@ -1,5 +1,7 @@
 package com.qsp.model;
 
+import com.qsp.util.RoomStatus;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -20,6 +22,7 @@ public class Room {
 	private int id;
 	private int roomId;
 	private String roomName;
+	RoomStatus roomStatus;
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn
 	private Floor floor;

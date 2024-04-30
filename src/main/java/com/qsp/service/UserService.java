@@ -3,6 +3,7 @@ package com.qsp.service;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 
 import com.qsp.ReposnseStructure.ResponseStructure;
 import com.qsp.model.User;
@@ -16,6 +17,7 @@ public interface UserService {
 	ResponseEntity<ResponseStructure<User>> findUserById(int id);
 
 	ResponseEntity<ResponseStructure<User>> updateUser(User user);
+
 	ResponseEntity<ResponseStructure<List<User>>> FindAll();
 
 	ResponseEntity<ResponseStructure<User>> saveUser(User user);

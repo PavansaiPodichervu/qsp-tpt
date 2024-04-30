@@ -1,11 +1,9 @@
 package com.qsp.serviceImp;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +20,8 @@ public class UserServiceImp implements UserService {
 
 	@Autowired
 	private UserDao userDao;
+	@Autowired
+	private SequenceGeneratorService sequenceGeneratorService;
 
 	@Override
 	public ResponseEntity<ResponseStructure<User>> findUserByEmailAndPassword(String email, String password) {
@@ -85,7 +85,7 @@ public class UserServiceImp implements UserService {
 		User user1 = userDao.saveUser(user);
 		ResponseStructure<User> responseStructure = new ResponseStructure<>();
 		if (user1 != null) {
-			user.setEmpId("qsp" + user.getId());
+			user.setEmpId("qsp" + sequenceGeneratorService.getNextSequenceValue("emp_id_sequence"));
 			responseStructure.setStatusCode(HttpStatus.CREATED.value());
 			responseStructure.setMessage("user account created successfully");
 			responseStructure.setBody(user);
